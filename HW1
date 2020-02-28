@@ -22,11 +22,16 @@ for i in {1..6}; do cut -f"$i" tabbed.txt | paste -s; done
 for i in {1..6}; do cut -f"$i" tabbed.txt | paste -s -d, ; done  
 numc=$(($(head -n 1 comma | grep -o , | wc -l)+1))
 echo "$numc"
+
 #!/bin/bash
 numc=$(($(head -n 1 "$1" | grep -o , | wc -l)+1))
 for ((i=1; i<="$numc"; i++))
 do cut -d,  -f"$i" "$1" | paste -s -d,
 done
+
+#To test result
+chmod +x trans.sh
+./trans.sh comma
 
 #For detailed instructions, please read https://colab.research.google.com/drive/1cLR6OmUeeQUgEQSEbclxq0g2r3kTgTfZ#scrollTo=LysmN-rSkqZ8
 

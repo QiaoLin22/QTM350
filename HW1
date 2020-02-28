@@ -1,0 +1,26 @@
+#Method 1. Use datamash
+brew install datamash
+bash datamash transpose < table.tsv
+
+#Mehod 2. Use AWK package together with a function to transpose a target table
+
+#!/bin/bash
+awk '{for (i=1; i<=NF; i++) a[i,NR]=$i
+        max=(max<NF?NF:max)}
+        END {for (i=1; i<=max; i++)
+              {for (j=1; j<=NR; j++) 
+                  printf "%s%s", a[i,j], (j==NR?RS:FS)
+              }
+        }' table.tsv
+        
+#Method 3. Build simple shell tools.
+cut -f1 tabbed.tsv
+cut -f1 tabbed.txt | paste -s
+for i in {1..6}; do cut -f"$i" tabbed.txt | paste -s; done
+for i in {1..6}; do cut -f"$i" tabbed.txt | paste -s -d, ; done  
+numc=$(($(head -n 1 comma | grep -o , | wc -l)+1))
+echo "$numc"
+numc=$(($(head -n 1 "$1" | grep -o , | wc -l)+1))
+for ((i=1; i<="$numc"; i++))
+do cut -d,  -f"$i" "$1" | paste -s -d,
+done

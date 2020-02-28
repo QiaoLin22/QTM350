@@ -25,3 +25,6 @@ numc=$(($(head -n 1 "$1" | grep -o , | wc -l)+1))
 for ((i=1; i<="$numc"; i++))
 do cut -d,  -f"$i" "$1" | paste -s -d,
 done
+
+#For detailed instructions, please read https://colab.research.google.com/drive/1cLR6OmUeeQUgEQSEbclxq0g2r3kTgTfZ#scrollTo=LysmN-rSkqZ8
+

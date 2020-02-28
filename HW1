@@ -1,3 +1,5 @@
+#table.tsv and tabbed.tsv are test files in this example. To test, change the corresponding file names to your input file names.
+
 #Method 1. Use datamash
 brew install datamash
 bash datamash transpose < table.tsv
